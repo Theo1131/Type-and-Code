@@ -1,4 +1,4 @@
-const configurazione = {
+export const configurazione = {
   testo: "!",
 
   dimensione: 0.8,
@@ -30,7 +30,7 @@ const configurazione = {
  *
  * @param {Ingredienti} ingredienti
  */
-function disegnaPunto({
+export function disegnaPunto({
   x,
   y,
   angolo,
@@ -65,14 +65,14 @@ function disegnaPunto({
   pop();
 }
 
-function caricamentoRisorse() {}
+export function caricamentoRisorse() {}
 
-function impostazioni() {
+export function impostazioni() {
   frameRate(30);
   angleMode(DEGREES);
   rectMode(CENTER);
 }
 
-function sotto(disegnaTesto) {
+export function sotto(disegnaTesto) {
   background("deeppink");
 }
