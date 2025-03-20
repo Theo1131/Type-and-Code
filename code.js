@@ -1,15 +1,15 @@
-export const configurazione = {
-  testo: "G",
+const configurazione = {
+  testo: "!",
 
   dimensione: 0.8,
   interlinea: 0.7,
   allineamento: "centro",
-  percorsoFont: "./assets/InputMonoCondensed-BoldItalic.ttf",
+  percorsoFont: "./assets/InputMonoCondensed-ThinItalic.ttf",
 
   sensibilitàMicrofonoBase: 1,
   densitàPuntiBase: 1,
 
-  nascondiInterfaccia: false,
+  nascondiInterfaccia: true,
 };
 
 /**
@@ -30,7 +30,7 @@ export const configurazione = {
  *
  * @param {Ingredienti} ingredienti
  */
-export function disegnaPunto({
+function disegnaPunto({
   x,
   y,
   angolo,
@@ -42,54 +42,37 @@ export function disegnaPunto({
   beta = 0,
   gamma = 0,
 }) {
-  const size = sin((frameCount + indice) * 6) * ((volume * unita) / 2) * unita;
+  push();
 
-  if (indice % 2 == 0) {
-    fill("black");
-  } else {
-    fill("white");
-  }
+  translate(x, y);
+  rotate(frameCount * 0.5 + indice * 10);
+  rotate(angolo + 90);
+  let lunghezza = map(volume * 10, 0, 1, 10, 170);
+  fill(255, 50);
   noStroke();
 
-  push();
-  translate(x, y);
-  ellipse(0, 0, size);
+  if (indice % 4 == 0) {
+    fill("deeppink");
+  }
+
+  ellipseMode(CENTER);
+  let altezza = map( noise(x,y, frameCount/10), 0, 1, lunghezza/2, lunghezza*2)
+  ellipse(0, 0, 50, altezza);
+
+  rectMode(CENTER);
+  rect(0, 0, lunghezza);
+
   pop();
 }
 
-/**
- * Carica le risorse necessarie
- * Esempio: carica immagini, suoni, ecc.
- */
-export function caricamentoRisorse() {}
+function caricamentoRisorse() {}
 
-/**
- * Imposta le impostazioni iniziali
- * Esempio: impostazioni di frame rate, misura degli angoli, ecc.
- */
-export function impostazioni() {
+function impostazioni() {
   frameRate(30);
   angleMode(DEGREES);
+  rectMode(CENTER);
 }
 
-/**
- * Disegna sotto i punti
- * @param {function} disegnaTesto - La funzione che disegna il testo
- */
-export function sotto(disegnaTesto) {
+function sotto(disegnaTesto) {
   background("deeppink");
-
-  // [INFO] Rimuovi il commento per disegnare il testo
-  fill("white");
-  disegnaTesto();
-}
-
-/**
- * Disegna sopra i punti
- * @param {function} disegnaTesto - La funzione che disegna il testo
- */
-export function sopra(disegnaTesto) {
-  // [INFO] Rimuovi il commento per disegnare il testo
-  // fill("black");
-  // disegnaTesto();
 }
