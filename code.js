@@ -76,3 +76,7 @@ export function impostazioni() {
 export function sotto(disegnaTesto) {
   background("deeppink");
 }
+
+export function sopra(disegnaTesto) {
+
+}
